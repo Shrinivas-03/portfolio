@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shrinivas Nadager - Software Engineer</title>
+    <!-- New Google Font for modern typography -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        :root {
+            --primary-color: #ff9800;
+            --secondary-color: #1abc9c;
+            --dark-color: #1c1c1c;
+            --light-color: #e0e0e0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1c1c1c, #2a2a2a);
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0,0,0,0.8);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: flex-start; /* Changed from space-between */
+            align-items: center;
+            gap: 2rem; /* Added gap */
+            z-index: 1000;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #ff9800;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            color: #e0e0e0;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ff9800;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: url('images/modern-bg.jpg') no-repeat center center/cover;
+            position: relative;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right:0; bottom: 0;
+            background: rgba(0,0,0,0.5);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: #ff9800;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-btn {
+            padding: 0.75rem 1.5rem;
+            background: #ff9800;
+            color: #1c1c1c;
+            border: none;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .cta-btn:hover {
+            background: #e68900;
+            transform: translateY(-3px);
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            color: #ff9800;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: "";
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: #ff9800;
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 0 1rem;
+        }
+
+        .skill-card {
+            background: rgba(255,255,255,0.05);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.1);
+        }
+
+        .skill-card i {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #ff9800;
+        }
+
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        .project-info {
+            padding: 1.5rem;
+        }
+
+        /* Contact */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 5px;
+            color: white;
+        }
+
+        textarea {
+            height: 150px;
+        }
+
+        /* Footer */
+        footer {
+            background: #000;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-links a {
+            color: #e0e0e0;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #ff9800;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Center About Me content */
+        .about {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container nav-content">
+            <div class="logo">
+                Innovating with Code, Empowering with Data – S.N
+            </div>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="container hero-content">
+            <img src="img.jpg" alt="Profile Image" style="max-width:150px; border-radius:50%; margin-bottom:1rem;">
+            <h1>Shrinivas Nadager</h1>
+            <p>Software Engineer &amp; Data Scientist</p>
+            <a href="#projects" class="cta-btn">View My Work</a>
+            <div class="social-links" style="margin-top: 2rem;">
+                <a href="https://github.com/Shrinivas-03"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/shrinivas-nadager"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Me</h2>
+            </div>
+            <p>
+                I am a Software Engineer &amp; Data Scientist with a passion for developing innovative solutions that bridge the gap between software engineering and data-driven decision-making. With a strong foundation in full-stack development, machine learning, and data analytics, I specialize in creating intelligent applications that optimize business processes, enhance user experiences, and drive strategic insights.
+            </p>
+            <h3>What I Do</h3>
+            <ul>
+                💡 Full-Stack Development: Designing and building scalable, high-performance applications using modern web technologies.<br>
+                📊 Data Science &amp; Machine Learning: Analyzing complex datasets, developing predictive models, and implementing AI-powered solutions. <br>
+                🚀 Big Data &amp; Cloud Computing: Handling large-scale data processing and deploying models on cloud platforms for seamless integration. <br>
+                🔍 Problem-Solving &amp; Optimization: Leveraging algorithms and analytical skills to improve software efficiency and performance. <br>
+            </ul>
+            <h3>My Mission</h3>
+            <p>
+                I thrive on solving real-world problems through the power of technology and data. Whether it's developing web applications, crafting AI-driven solutions, or uncovering actionable insights from data, my goal is to create impactful and intelligent digital experiences.
+            </p>
+            <p>Let’s build something innovative together! 🚀</p>
+        </div>
+    </section>
+
+    <section id="skills" class="skills">
+        <div class="container">
+            <div class="section-title">
+                <h2>Skills</h2>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <i class="fab fa-html5"></i>
+                    <h3>HTML</h3>
+                    <p>Markup for web pages</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fab fa-css3-alt"></i>
+                    <h3>CSS</h3>
+                    <p>Styling web content</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fab fa-python"></i>
+                    <h3>Python</h3>
+                    <p>Versatile programming language</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-code"></i>
+                    <h3>C</h3>
+                    <p>Low-level programming</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-database"></i>
+                    <h3>SQL</h3>
+                    <p>Database management</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-flask"></i>
+                    <h3>Flask</h3>
+                    <p>Python web framework</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-robot"></i>
+                    <h3>Machine Learning</h3>
+                    <p>Predictive data analytics</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-chart-bar"></i>
+                    <h3>PowerBI</h3>
+                    <p>Data visualization</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="projects">
+        <div class="container">
+            <div class="section-title">
+                <h2>Projects</h2>
+            </div>
+            <div class="projects-grid">
+                <!-- Updated Project 1 -->
+                <div class="project-card">
+                    <img src="prj1.jpg" class="project-img" alt="AI-Based News Web App">
+                    <div class="project-info">
+                        <h2>AI-Based News Web App</h2>
+                        
+                        <!-- New skills used line added -->
+                        <p><strong>Skills used:</strong> Flask, Python, NLP, HTML, Tailwind CSS, JavaScript, REST API</p>
+                        <ul>
+                            <li>Developed a web app that uses a transformer-based NLP model to summarize news articles.</li>
+                            <li>Integrated News API to fetch real-time news from various sources.</li>
+                            <li>Implemented OTP verification via email for enhanced security and password hashing for user privacy.</li>
+                            <li>Added a “Saved Articles” feature to allow users to bookmark articles for later reading.</li>
+                            <li>Categorized news articles into multiple topics for easy navigation and personalized user experience.</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Updated Project 2 with new details -->
+                <div class="project-card">
+                    <img src="prj2.png" class="project-img" alt="College Fest Website">
+                    <div class="project-info">
+                        <h3>College Fest Management Website</h3>
+                        <p><strong>Technologies Used:</strong> HTML, Tailwind CSS, Flask (Python), MySQL</p>
+                        <p>
+                            Project Overview: Developed a dynamic and responsive website for college fest event management, registrations, and information sharing. The platform provides an intuitive user experience, allowing students to register for events, view schedules, and get real-time updates.
+                        </p>
+                        <ul>
+                            <li>✅ User Authentication: Secure login and registration for participants and organizers.</li>
+                            <li>✅ Event Registration: Automated fee calculation for solo and group events.</li>
+                            <li>✅ Real-Time Updates: Dynamic announcements and schedules.</li>
+                            <li>✅ Admin Dashboard: Manage event entries, registrations, and participant details.</li>
+                            <li>✅ Responsive &amp; Fast UI: Tailwind CSS for a seamless, modern user experience.</li>
+                        </ul>
+                        <p>
+                            <strong>Impact &amp; Outcome:</strong><br>
+                            🔹 Streamlined event registration, reducing manual paperwork.<br>
+                            🔹 Improved accessibility with a mobile-friendly design.<br>
+                            🔹 Enabled efficient data management for organizers.<br>
+                            🔹 Successfully hosted hundreds of participants.
+                        </p>
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+    </section>
+
+  
+
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="https://github.com/Shrinivas-03"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/shrinivas-nadager"><i class="fab fa-linkedin"></i></a>
+            </div>
+            <p>&copy; 2023 Shrinivas Nadager. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) {
+                document.querySelector('.navbar').style.background = 'rgba(44, 62, 80, 0.95)';
+            } else {
+                document.querySelector('.navbar').style.background = 'rgba(44, 62, 80, 0.7)';
+            }
+        });
+
+        // Form submission
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! I will get back to you soon.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
